@@ -9,11 +9,14 @@ namespace TwentyFortyEight
 
         private static void Main(string[] args)
         {
-            PrintInstructions();
+            PrintInformation();
             game = new Game(boardSize);
             StartGame();
         }
 
+        /// <summary>
+        /// Main entrance of the program. Where the game is initialized.
+        /// </summary>
         private static void StartGame()
         {
             while (true)
@@ -51,6 +54,11 @@ namespace TwentyFortyEight
             }
         }
 
+        /// <summary>
+        /// Converts user input to the enum that is used by the Game class.
+        /// </summary>
+        /// <param name="move"></param>
+        /// <returns></returns>
         private static Moves convertUserMove(String move)
         {
             string m = move.ToLower();
@@ -76,6 +84,9 @@ namespace TwentyFortyEight
             }
         }
 
+        /// <summary>
+        /// Prints the current game state of the board
+        /// </summary>
         private static void PrintBoard()
         {
             Console.WriteLine("\n#######################################################################");
@@ -85,7 +96,7 @@ namespace TwentyFortyEight
                 {
                     if (game.board[i][j] == 0)
                     {
-                        Console.Write("\t0\t");
+                        Console.Write("\t\t");
                     }
                     else
                     {
@@ -97,7 +108,10 @@ namespace TwentyFortyEight
             Console.WriteLine("#######################################################################\n\n");
         }
 
-        private static void PrintInstructions()
+        /// <summary>
+        /// Prints information about the game
+        /// </summary>
+        private static void PrintInformation()
         {
             Console.WriteLine("2048 is a single - player puzzle game inwhich the objective is to slide numbered tiles on a grid to combine them and create a tile with the number 2048.Type exit to exit the game.");
         }

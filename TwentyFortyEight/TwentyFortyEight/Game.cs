@@ -10,14 +10,23 @@ namespace TwentyFortyEight
         private const double twoProbability = 0.90;
         private const double fourProbability = 0.10;
         private readonly int boardSize;
-
+       
+        /// <summary>
+        /// Constructor that initializes the game board
+        /// </summary>
+        /// <param name="boardSize"></param>
         public Game(int boardSize)
         {
             this.boardSize = boardSize;
             board = PopulateBoard();
             InsertNewTilesToBoard();
+      
         }
 
+        /// <summary>
+        /// Exposed method that takes in user move and moves the board accordingly. Pass in a valid move to shift the tiles on the board.
+        /// </summary>
+        /// <param name="move"></param>
         public void UserMove(Moves move)
         {
             switch (move)
@@ -47,8 +56,10 @@ namespace TwentyFortyEight
             }
         }
 
-      
-
+        /// <summary>
+        /// Checks if the game is won already (i.e. the value 2048 is achieved). 
+        /// </summary>
+        /// <returns>True if the game is won; false otherwise.</returns>
         public bool IsGameWon()
         {
             for (int i = 0; i < boardSize; i++)
@@ -64,6 +75,10 @@ namespace TwentyFortyEight
             return false;
         }
 
+        /// <summary>
+        /// Checks if the game state is game over. Checks if all spots are filled (can't generate new random tiles) and if there are no moves available.
+        /// </summary>
+        /// <returns>True if the game is over; false otherwise.</returns>
         public bool IsGameOver()
         {
             bool allSpotsFilled = true;
@@ -103,6 +118,10 @@ namespace TwentyFortyEight
             return allSpotsFilled && noMovesAvailable;
         }
 
+        /// <summary>
+        /// Populates the board with 0 values initially.
+        /// </summary>
+        /// <returns></returns>
         private List<List<int>> PopulateBoard()
         {
             List<List<int>> rows = new List<List<int>>();
@@ -118,6 +137,11 @@ namespace TwentyFortyEight
             return rows;
         }
 
+        /// <summary>
+        /// Rotates the board to the right (used for shifting tiles). To rotate to the right
+        /// first the matrix is transposed and then each rows were reversed.
+        /// </summary>
+        /// <returns></returns>
         private List<List<int>> RotateMatrixRight()
         {
             List<List<int>> tempBoard = PopulateBoard();
@@ -135,6 +159,11 @@ namespace TwentyFortyEight
             return tempBoard;
         }
 
+        /// <summary>
+        /// Rotates the board to the left (used for shifting tiles). To rotate to thr left,
+        /// first the matrix is reversed every row and then transposed.
+        /// </summary>
+        /// <returns></returns>
         private List<List<int>> RotateMatrixLeft()
         {
             List<List<int>> tempBoard = PopulateBoard();
@@ -153,6 +182,9 @@ namespace TwentyFortyEight
             return tempBoard;
         }
 
+        /// <summary>
+        /// Shifts the board downwards (rotated left first, then shifted to the right, then rotated back to the right)
+        /// </summary>
         private void ShiftBoardDown()
         {
             board = RotateMatrixLeft();
@@ -160,6 +192,9 @@ namespace TwentyFortyEight
             board = RotateMatrixRight();
         }
 
+        /// <summary>
+        /// Shifts the board upwards (rorated right first, then shifted to the right, then rotated back to the left)
+        /// </summary>
         private void ShiftBoardUp()
         {
             board = RotateMatrixRight();
@@ -167,6 +202,10 @@ namespace TwentyFortyEight
             board = RotateMatrixLeft();
         }
 
+        /// <summary>
+        /// Shifts the board to the right. First removes all the 0's from the array, then merges 
+        /// similar adjacent values together on the right.
+        /// </summary>
         private void ShiftBoardRight()
         {
             for (int i = 0; i < boardSize; i++)
@@ -195,6 +234,10 @@ namespace TwentyFortyEight
             }
         }
 
+        /// <summary>
+        /// Shifts the board to the left. Removes all the 0's in the row first, then merges similar 
+        /// adjacent values together on the right.
+        /// </summary>
         private void ShiftBoardLeft()
         {
             for (int i = 0; i < boardSize; i++)
@@ -223,6 +266,10 @@ namespace TwentyFortyEight
             }
         }
 
+        /// <summary>
+        /// Inserts randomly generated tiles to the board. This function gets called when a new board is initialized, 
+        /// or when the user has made a move and available spaces can be occupied.
+        /// </summary>
         private void InsertNewTilesToBoard()
         {
             Tile tile0 = GenerateRandomTile();
@@ -234,6 +281,11 @@ namespace TwentyFortyEight
             }
         }
 
+        /// <summary>
+        /// Generates a random tile based on the probability chosen. Gets all the available empty spots on the board
+        /// and a random spot is chosen randomly from the open spaces.
+        /// </summary>
+        /// <returns>Returns the randomly generated tile</returns>
         private Tile GenerateRandomTile()
         {
             double probability;
@@ -261,6 +313,10 @@ namespace TwentyFortyEight
             return tile;
         }
 
+        /// <summary>
+        /// Gets all the empty spaces of the board for new tiles to populate.
+        /// </summary>
+        /// <returns>List of available spots for new tiles</returns>
         private List<Tile> GetEmptyTiles()
         {
             List<Tile> tiles = new List<Tile>();
@@ -278,6 +334,9 @@ namespace TwentyFortyEight
         }
     }
 
+    /// <summary>
+    /// Tile class for generating random tiles
+    /// </summary>
     internal class Tile
     {
         public int value;

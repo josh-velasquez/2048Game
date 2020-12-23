@@ -95,7 +95,6 @@ namespace TwentyFortyEightUnitTest
             for (int j = 0; j < boardSize; j++)
             {
                 Assert.AreEqual(game.board[0][j], resultingBoard[0][j]);
-                Assert.AreEqual(game.board[1][j], resultingBoard[1][j]);
             }
         }
 
@@ -112,7 +111,6 @@ namespace TwentyFortyEightUnitTest
             // The resulting matrix should be the same with the exception of the newly created tiles
             for (int j = 0; j < boardSize; j++)
             {
-                Assert.AreEqual(game.board[boardSize-2][j], resultingBoard[boardSize-2][j]);
                 Assert.AreEqual(game.board[boardSize-1][j], resultingBoard[boardSize-1][j]);
             }
         }
@@ -136,6 +134,16 @@ namespace TwentyFortyEightUnitTest
                 }
             }
             Assert.AreEqual(4, validTileCount);
+        }
+
+        [Test]
+        public void AlmostGameOverButIsAWin_Test()
+        {
+            Game game = new Game(boardSize);
+            List<List<int>> winningBoard = new List<List<int>> { new List<int> { 16, 32, 4, 8 }, new List<int> { 1024, 8, 16, 32 }, new List<int> { 1024, 64, 32, 64 }, new List<int> { 16, 32, 4, 256 } };
+            game.board = winningBoard;
+            game.UserMove(Moves.Down);
+            Assert.IsTrue(game.IsGameWon());
         }
     }
 }

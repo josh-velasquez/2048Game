@@ -1,0 +1,13 @@
+C:\Users\joshv\Desktop\Github\2048Game\TwentyFortyEight\TwentyFortyEight\bin\Release\netcoreapp3.1\TwentyFortyEight.exe
+C:\Users\joshv\Desktop\Github\2048Game\TwentyFortyEight\TwentyFortyEight\bin\Release\netcoreapp3.1\TwentyFortyEight.deps.json
+C:\Users\joshv\Desktop\Github\2048Game\TwentyFortyEight\TwentyFortyEight\bin\Release\netcoreapp3.1\TwentyFortyEight.runtimeconfig.json
+C:\Users\joshv\Desktop\Github\2048Game\TwentyFortyEight\TwentyFortyEight\bin\Release\netcoreapp3.1\TwentyFortyEight.runtimeconfig.dev.json
+C:\Users\joshv\Desktop\Github\2048Game\TwentyFortyEight\TwentyFortyEight\bin\Release\netcoreapp3.1\TwentyFortyEight.dll
+C:\Users\joshv\Desktop\Github\2048Game\TwentyFortyEight\TwentyFortyEight\bin\Release\netcoreapp3.1\TwentyFortyEight.pdb
+C:\Users\joshv\Desktop\Github\2048Game\TwentyFortyEight\TwentyFortyEight\obj\Release\netcoreapp3.1\TwentyFortyEight.csprojAssemblyReference.cache
+C:\Users\joshv\Desktop\Github\2048Game\TwentyFortyEight\TwentyFortyEight\obj\Release\netcoreapp3.1\TwentyFortyEight.AssemblyInfoInputs.cache
+C:\Users\joshv\Desktop\Github\2048Game\TwentyFortyEight\TwentyFortyEight\obj\Release\netcoreapp3.1\TwentyFortyEight.AssemblyInfo.cs
+C:\Users\joshv\Desktop\Github\2048Game\TwentyFortyEight\TwentyFortyEight\obj\Release\netcoreapp3.1\TwentyFortyEight.csproj.CoreCompileInputs.cache
+C:\Users\joshv\Desktop\Github\2048Game\TwentyFortyEight\TwentyFortyEight\obj\Release\netcoreapp3.1\TwentyFortyEight.dll
+C:\Users\joshv\Desktop\Github\2048Game\TwentyFortyEight\TwentyFortyEight\obj\Release\netcoreapp3.1\TwentyFortyEight.pdb
+C:\Users\joshv\Desktop\Github\2048Game\TwentyFortyEight\TwentyFortyEight\obj\Release\netcoreapp3.1\TwentyFortyEight.genruntimeconfig.cache
