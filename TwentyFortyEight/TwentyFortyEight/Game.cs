@@ -10,7 +10,7 @@ namespace TwentyFortyEight
         private const double twoProbability = 0.90;
         private const double fourProbability = 0.10;
         private readonly int boardSize;
-       
+
         /// <summary>
         /// Constructor that initializes the game board
         /// </summary>
@@ -20,7 +20,6 @@ namespace TwentyFortyEight
             this.boardSize = boardSize;
             board = PopulateBoard();
             InsertNewTilesToBoard();
-      
         }
 
         /// <summary>
@@ -57,7 +56,7 @@ namespace TwentyFortyEight
         }
 
         /// <summary>
-        /// Checks if the game is won already (i.e. the value 2048 is achieved). 
+        /// Checks if the game is won already (i.e. the value 2048 is achieved).
         /// </summary>
         /// <returns>True if the game is won; false otherwise.</returns>
         public bool IsGameWon()
@@ -203,7 +202,7 @@ namespace TwentyFortyEight
         }
 
         /// <summary>
-        /// Shifts the board to the right. First removes all the 0's from the array, then merges 
+        /// Shifts the board to the right. First removes all the 0's from the array, then merges
         /// similar adjacent values together on the right.
         /// </summary>
         private void ShiftBoardRight()
@@ -235,7 +234,7 @@ namespace TwentyFortyEight
         }
 
         /// <summary>
-        /// Shifts the board to the left. Removes all the 0's in the row first, then merges similar 
+        /// Shifts the board to the left. Removes all the 0's in the row first, then merges similar
         /// adjacent values together on the right.
         /// </summary>
         private void ShiftBoardLeft()
@@ -267,7 +266,7 @@ namespace TwentyFortyEight
         }
 
         /// <summary>
-        /// Inserts randomly generated tiles to the board. This function gets called when a new board is initialized, 
+        /// Inserts randomly generated tiles to the board. This function gets called when a new board is initialized,
         /// or when the user has made a move and available spaces can be occupied.
         /// </summary>
         private void InsertNewTilesToBoard()

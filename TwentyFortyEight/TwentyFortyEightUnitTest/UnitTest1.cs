@@ -111,7 +111,7 @@ namespace TwentyFortyEightUnitTest
             // The resulting matrix should be the same with the exception of the newly created tiles
             for (int j = 0; j < boardSize; j++)
             {
-                Assert.AreEqual(game.board[boardSize-1][j], resultingBoard[boardSize-1][j]);
+                Assert.AreEqual(game.board[boardSize - 1][j], resultingBoard[boardSize - 1][j]);
             }
         }
 
