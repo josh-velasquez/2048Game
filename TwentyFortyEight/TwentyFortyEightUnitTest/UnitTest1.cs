@@ -116,10 +116,10 @@ namespace TwentyFortyEightUnitTest
         }
 
         [Test]
-        public void MovingTheTilesCreatesTwoNewTiles_Test()
+        public void MovingTheTilesCreateANewTile_Test()
         {
             Game game = new Game(boardSize);
-            List<List<int>> specialBoard = new List<List<int>> { new List<int> { 0, 0, 0, 4 }, new List<int> { 0, 0, 0, 0 }, new List<int> { 0, 0, 0, 8 }, new List<int> { 0, 0, 0, 0 } };
+            List<List<int>> specialBoard = new List<List<int>> { new List<int> { 0, 0, 4, 0 }, new List<int> { 0, 0, 0, 0 }, new List<int> { 0, 0, 0, 8 }, new List<int> { 0, 0, 0, 0 } };
             game.board = specialBoard;
             game.UserMove(Moves.Right);
             int validTileCount = 0;
@@ -133,7 +133,7 @@ namespace TwentyFortyEightUnitTest
                     }
                 }
             }
-            Assert.AreEqual(4, validTileCount);
+            Assert.AreEqual(3, validTileCount);
         }
 
         [Test]
@@ -144,6 +144,50 @@ namespace TwentyFortyEightUnitTest
             game.board = winningBoard;
             game.UserMove(Moves.Down);
             Assert.IsTrue(game.IsGameWon());
+        }
+
+        [Test]
+        public void LeftInvalidMove_Test()
+        {
+            Game game = new Game(boardSize);
+            List<List<int>> invalidMove = new List<List<int>> { new List<int> { 2, 0, 0, 0 }, new List<int> { 0, 4, 0, 0 }, new List<int> { 0, 0, 0, 0 }, new List<int> { 0, 0, 0, 0 } };
+            game.board = invalidMove;
+            game.UserMove(Moves.Left);
+            // No new tiles should be generated and the board state should not change
+            Assert.AreEqual(invalidMove, game.board);
+        }
+
+        [Test]
+        public void RightInvalidMove_Test()
+        {
+            Game game = new Game(boardSize);
+            List<List<int>> invalidMove = new List<List<int>> { new List<int> { 0, 0, 0, 0 }, new List<int> { 0, 0, 0, 2 }, new List<int> { 0, 0, 0, 0 }, new List<int> { 0, 0, 0, 4 } };
+            game.board = invalidMove;
+            game.UserMove(Moves.Right);
+            // No new tiles should be generated and the board state should not change
+            Assert.AreEqual(invalidMove, game.board);
+        }
+
+        [Test]
+        public void UpInvalidMove_Test()
+        {
+            Game game = new Game(boardSize);
+            List<List<int>> invalidMove = new List<List<int>> { new List<int> { 2, 0, 4, 0 }, new List<int> { 0, 0, 0, 0 }, new List<int> { 0, 0, 0, 0 }, new List<int> { 0, 0, 0, 0 } };
+            game.board = invalidMove;
+            game.UserMove(Moves.Up);
+            // No new tiles should be generated and the board state should not change
+            Assert.AreEqual(invalidMove, game.board);
+        }
+
+        [Test]
+        public void DownInvalidMove_Test()
+        {
+            Game game = new Game(boardSize);
+            List<List<int>> invalidMove = new List<List<int>> { new List<int> { 0, 0, 0, 0 }, new List<int> { 0, 0, 0, 0 }, new List<int> { 0, 0, 0, 0 }, new List<int> { 0, 4, 0, 2 } };
+            game.board = invalidMove;
+            game.UserMove(Moves.Down);
+            // No new tiles should be generated and the board state should not change
+            Assert.AreEqual(invalidMove, game.board);
         }
     }
 }

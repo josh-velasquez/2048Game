@@ -19,7 +19,8 @@ namespace TwentyFortyEight
         {
             this.boardSize = boardSize;
             board = PopulateBoard();
-            InsertNewTilesToBoard();
+            InsertNewTileOnBoard();
+            InsertNewTileOnBoard();
         }
 
         /// <summary>
@@ -28,29 +29,30 @@ namespace TwentyFortyEight
         /// <param name="move"></param>
         public void UserMove(Moves move)
         {
+            if (!isValidMove(move))
+            {
+                return;
+            }
             switch (move)
             {
                 case Moves.Left:
                     ShiftBoardLeft();
-                    InsertNewTilesToBoard();
+                    InsertNewTileOnBoard();
                     return;
 
                 case Moves.Up:
                     ShiftBoardUp();
-                    InsertNewTilesToBoard();
+                    InsertNewTileOnBoard();
                     return;
 
                 case Moves.Right:
                     ShiftBoardRight();
-                    InsertNewTilesToBoard();
+                    InsertNewTileOnBoard();
                     return;
 
                 case Moves.Down:
                     ShiftBoardDown();
-                    InsertNewTilesToBoard();
-                    return;
-
-                case Moves.Invalid:
+                    InsertNewTileOnBoard();
                     return;
             }
         }
@@ -234,6 +236,46 @@ namespace TwentyFortyEight
         }
 
         /// <summary>
+        /// Corner case that checks if the move is valid. Ex. if the very first row is populated ONLY and a move up is used, this should be registered as
+        /// an invalid move and no new tiles should be generated.
+        /// </summary>
+        /// <param name="move"></param>
+        /// <returns></returns>
+        private bool isValidMove(Moves move)
+        {
+            switch (move)
+            {
+                case Moves.Left:
+                    return !isEmpty(0, boardSize, 1, boardSize);
+
+                case Moves.Right:
+                    return !isEmpty(0, boardSize, 0, boardSize - 1);
+
+                case Moves.Down:
+                    return !isEmpty(0, boardSize - 1, 0, boardSize);
+
+                case Moves.Up:
+                    return !isEmpty(1, boardSize, 0, boardSize);
+            }
+            return false;
+        }
+
+        private bool isEmpty(int startRow, int endRow, int startCol, int endCol)
+        {
+            for (int i = startRow; i < endRow; i++)
+            {
+                for (int j = startCol; j < endCol; j++)
+                {
+                    if (board[i][j] != 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Shifts the board to the left. Removes all the 0's in the row first, then merges similar
         /// adjacent values together on the right.
         /// </summary>
@@ -269,14 +311,12 @@ namespace TwentyFortyEight
         /// Inserts randomly generated tiles to the board. This function gets called when a new board is initialized,
         /// or when the user has made a move and available spaces can be occupied.
         /// </summary>
-        private void InsertNewTilesToBoard()
+        private void InsertNewTileOnBoard()
         {
-            Tile tile0 = GenerateRandomTile();
-            Tile tile1 = GenerateRandomTile();
-            if (tile0 != null || tile1 != null)
+            Tile tile = GenerateRandomTile();
+            if (tile != null)
             {
-                board[tile0.xPos][tile0.yPos] = tile0.value;
-                board[tile1.xPos][tile1.yPos] = tile1.value;
+                board[tile.xPos][tile.yPos] = tile.value;
             }
         }
 

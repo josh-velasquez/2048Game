@@ -25,9 +25,9 @@ namespace TwentyFortyEight
                 Console.Write("\nWhich direction would you like to move? (l = left, u = up, r = right, d = down): ");
                 string userInput = Console.ReadLine();
 
-                Moves move = convertUserMove(userInput);
-                if (move != Moves.Invalid)
+                if (isUserMoveValid(userInput))
                 {
+                    Moves move = convertUserMove(userInput);
                     game.UserMove(move);
                     if (game.IsGameWon())
                     {
@@ -54,6 +54,16 @@ namespace TwentyFortyEight
             }
         }
 
+        private static bool isUserMoveValid(string userInput)
+        {
+            string input = userInput.ToLower();
+            if (input == "l" || input == ("u") || input == ("r") || input == "d")
+            {
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Converts user input to the enum that is used by the Game class.
         /// </summary>
@@ -74,13 +84,9 @@ namespace TwentyFortyEight
             {
                 return Moves.Right;
             }
-            else if (m == ("d"))
-            {
-                return Moves.Down;
-            }
             else
             {
-                return Moves.Invalid;
+                return Moves.Down;
             }
         }
 
